@@ -23,12 +23,10 @@ export default class Submission extends React.Component {
     }
   }
 
-  componentDidMount = () => {
-    this.setState({ unixtime: Date.now() });
-  }
-
   handleSubmit = (event) => {
-    alert('A manuscript was submitted: ' + this.state.title);
+    this.setState({ unixtime: Date.now() });
+    const date = new Date(this.state.unixtime * 1000);
+    alert('A manuscript was submitted: ' + this.state.title + ' at ' + date);
     // event.preventDefault();
   }
 

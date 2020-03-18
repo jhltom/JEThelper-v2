@@ -67,51 +67,51 @@ export default class Submission extends React.Component {
           <div className="jumbotron less-headspace">
 
 
-            <div className="home-header">Contact Information : </div>
+            <div className="submission-header">Contact Information : </div>
             <br></br>
             <div className="submission-body">
               <label> Author
-                <input type="text" style={{ width: "500px" }} value={this.state.author} onChange={this.author} />
+                <input type="text" style={{ width: "50vw" }} value={this.state.author} onChange={this.author} />
               </label>
             </div>
             <div className="submission-body">
               <label> Institution
-                <input type="text" style={{ width: "500px" }} value={this.state.institution} onChange={this.institution} />
+                <input type="text" style={{ width: "50vw" }} value={this.state.institution} onChange={this.institution} />
               </label>
             </div>
             <div className="submission-body">
               <label> Mailing Address
-                <input type="text" style={{ width: "500px" }} value={this.state.address} onChange={this.address} />
+                <input type="text" style={{ width: "50vw" }} value={this.state.address} onChange={this.address} />
               </label>
             </div>
             <div className="submission-body">
               <label> E-mail
-                <input type="text" style={{ width: "500px", resize:"horizontal" }} value={this.state.email} onChange={this.email} />
+                <input type="text" style={{ width: "50vw", resize:"horizontal" }} value={this.state.email} onChange={this.email} />
               </label>
             </div>
             <div className="submission-body">
               <label> Telephone Number
-                <input type="text" style={{ width: "500px" }} value={this.state.telephone} onChange={this.telephone} />
+                <input type="text" style={{ width: "50vw" }} value={this.state.telephone} onChange={this.telephone} />
               </label>
             </div>
 
             <br></br>
 
-            <div className="home-header">Manuscript : </div>
+            <div className="submission-header">Manuscript : </div>
             <br></br>
             <div className="submission-body">
               <label> Title
-                <input type="text" style={{ width: "500px" }} value={this.state.title} onChange={this.title} />
+                <input type="text" style={{ width: "50vw" }} value={this.state.title} onChange={this.title} />
               </label>
             </div>
             <div className="submission-body">
               <label> Keywords
-                <input type="text" style={{ width: "500px" }} value={this.state.keywords} onChange={this.keywords} />
+                <input type="text" style={{ width: "50vw" }} value={this.state.keywords} onChange={this.keywords} />
               </label>
             </div>
             <div className="submission-body">
               <label> Abstract
-                <input type="text" style={{ width: "500px" }} value={this.state.abstract} onChange={this.abstract} />
+                <input type="text" style={{ width: "50vw" }} value={this.state.abstract} onChange={this.abstract} />
               </label>
             </div>
             <br></br>

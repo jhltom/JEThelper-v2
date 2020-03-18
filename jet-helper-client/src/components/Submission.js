@@ -27,7 +27,7 @@ export default class Submission extends React.Component {
     this.setState({ unixtime: Date.now() });
     const date = new Date(this.state.unixtime * 1000);
     alert('A manuscript was submitted: ' + this.state.title + ' at ' + date);
-    // event.preventDefault();
+    event.preventDefault();
   }
 
   // update states

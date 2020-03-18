@@ -10,8 +10,6 @@
 }
 
 .submission-body {
-  display: flex;
-  flex-flow: row nowrap;
   text-align: left;
   margin-left: 2%; 
   margin-right: 50%; 

@@ -1,0 +1,23 @@
+.home-container .home-header{
+  display: flex;
+  flex-flow: row nowrap;
+  height: 40px;
+}
+
+.home-header{
+  font-weight: bold;
+  text-align: left;
+}
+
+.home-body {
+  text-align: left;
+  margin-left: 2%; 
+}
+
+.less-headspace {
+  padding-top: 1rem !important;
+}
+
+.findFriend-headspace {
+  padding-top: 2rem !important;
+}

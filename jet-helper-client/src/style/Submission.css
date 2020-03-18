@@ -1,0 +1,23 @@
+.submission-container .submission-header{
+  display: flex;
+  flex-flow: row nowrap;
+  height: 40px;
+}
+
+.submission-header{
+  font-weight: bold;
+  text-align: left;
+}
+
+.submission-body {
+  display: flex;
+  flex-flow: row nowrap;
+  text-align: left;
+  margin-left: 2%; 
+  margin-right: 50%; 
+  font-size: 80%
+}
+
+.less-headspace {
+  padding-top: 1rem !important;
+}

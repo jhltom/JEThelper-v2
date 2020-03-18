@@ -5,7 +5,7 @@ import {
 	Switch
 } from 'react-router-dom';
 import Home from './components/Home';
-import logo from './logo.svg';
+import Submission from './components/Submission';
 import './App.css';
 
 function App() {
@@ -27,13 +27,13 @@ function App() {
 								<Home />
 							)}
 						/>
-						{/* <Route
+						<Route
 							exact
-							path="/FindFriends"
+							path="/Submission"
 							render={() => (
-								<FindFriends />
+								<Submission />
 							)}
-						/> */}
+						/>
 					</Switch>
 				</Router>
 			</div>

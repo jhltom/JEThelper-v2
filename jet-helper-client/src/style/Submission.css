@@ -12,11 +12,16 @@
 .submission-body {
   text-align: left;
   margin-left: 2%; 
-  margin-right: 50%; 
   font-size: 80%;
   position: relative
 }
 
 .less-headspace {
   padding-top: 1rem !important;
+}
+
+.bigText {
+  height:200px;
+  text-align: "left";
+  overflow-wrap: break-word;
 }

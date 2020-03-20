@@ -9,14 +9,20 @@ export default class Submission extends React.Component {
 
     this.state = {
       //contact information
-      author: "",
+      authorLast: "",
+      authorFirst: "",
       institution: "",
+      position: "",
       address: "",
       email: "",
       telephone: "",
       //manuscript
       title: "",
-      keywords: "",
+      keyword1: "",
+      keyword2: "",
+      keyword3: "",
+      keyword4: "",
+      keyword5: "",
       abstract: "",
       //submission
       unixtime: 0
@@ -31,11 +37,17 @@ export default class Submission extends React.Component {
   }
 
   // update states
-  author = (event) => {
-    this.setState({ author: event.target.value });
+  authorLast = (event) => {
+    this.setState({ authorLast: event.target.value });
+  }
+  authorFirst = (event) => {
+    this.setState({ authorFirst: event.target.value });
   }
   institution = (event) => {
     this.setState({ institution: event.target.value });
+  }
+  position = (event) => {
+    this.setState({ position: event.target.value });
   }
   address = (event) => {
     this.setState({ address: event.target.value });
@@ -50,14 +62,25 @@ export default class Submission extends React.Component {
   title = (event) => {
     this.setState({ title: event.target.value });
   }
-  keywords = (event) => {
-    this.setState({ keywords: event.target.value });
+  keyword1 = (event) => {
+    this.setState({ keyword1: event.target.value });
+  }
+  keyword2 = (event) => {
+    this.setState({ keyword2: event.target.value });
+  }
+  keyword3 = (event) => {
+    this.setState({ keyword3: event.target.value });
+  }
+  keyword4 = (event) => {
+    this.setState({ keyword4: event.target.value });
+  }
+  keyword5 = (event) => {
+    this.setState({ keyword5: event.target.value });
   }
   abstract = (event) => {
     this.setState({ abstract: event.target.value });
   }
-  
-  
+
 
   render() {
     return (
@@ -66,32 +89,37 @@ export default class Submission extends React.Component {
         <div className="container submission-container">
           <div className="jumbotron less-headspace">
 
-
             <div className="submission-header">Contact Information : </div>
             <br></br>
             <div className="submission-body">
-              <label> Author
-                <input type="text" style={{ width: "50vw" }} value={this.state.author} onChange={this.author} />
+              <label> Author <br></br>
+                <input type="text" placeholder="Last name" style={{ width: "25vw" }} value={this.state.authorLast} onChange={this.authorLast} /> {" "}
+                <input type="text" placeholder="First name" style={{ width: "25vw" }} value={this.state.authorFirst} onChange={this.authorFirst} />
               </label>
             </div>
             <div className="submission-body">
-              <label> Institution
-                <input type="text" style={{ width: "50vw" }} value={this.state.institution} onChange={this.institution} />
+              <label> Institution <br></br>
+                <input type="text" placeholder="University, Organization, Research Institution, Laboratory, etc. " style={{ width: "50vw" }} value={this.state.institution} onChange={this.institution} />
               </label>
             </div>
             <div className="submission-body">
-              <label> Mailing Address
-                <input type="text" style={{ width: "50vw" }} value={this.state.address} onChange={this.address} />
+              <label> Title / Position <br></br>
+                <input type="text" placeholder="Assistant Professor, Associate Professor, Senior Researcher, etc. " style={{ width: "50vw" }} value={this.state.position} onChange={this.position} />
               </label>
             </div>
             <div className="submission-body">
-              <label> E-mail
-                <input type="text" style={{ width: "50vw", resize:"horizontal" }} value={this.state.email} onChange={this.email} />
+              <label> Mailing Address <br></br>
+                <input type="text"  placeholder="Preferred Mailing Address" style={{ width: "50vw" }} value={this.state.address} onChange={this.address} />
               </label>
             </div>
             <div className="submission-body">
-              <label> Telephone Number
-                <input type="text" style={{ width: "50vw" }} value={this.state.telephone} onChange={this.telephone} />
+              <label> Email <br></br>
+                <input type="text" placeholder="Email address" style={{ width: "50vw" }} value={this.state.email} onChange={this.email} />
+              </label>
+            </div>
+            <div className="submission-body">
+              <label> Telephone Number <br></br>
+                <input type="text" placeholder="Phone # with Country Code" style={{ width: "50vw" }} value={this.state.telephone} onChange={this.telephone} />
               </label>
             </div>
 
@@ -100,22 +128,27 @@ export default class Submission extends React.Component {
             <div className="submission-header">Manuscript : </div>
             <br></br>
             <div className="submission-body">
-              <label> Title
-                <input type="text" style={{ width: "50vw" }} value={this.state.title} onChange={this.title} />
+              <label> Title<br></br>
+                <input type="text" placeholder="Title of the Manuscript" style={{ width: "50vw" }} value={this.state.title} onChange={this.title} />
               </label>
             </div>
             <div className="submission-body">
-              <label> Keywords
-                <input type="text" style={{ width: "50vw" }} value={this.state.keywords} onChange={this.keywords} />
+              <label> Keywords (up to five) <br></br>
+                <input type="text" placeholder="Keyword 1" style={{ width: "10vw" }} value={this.state.keyword1} onChange={this.keyword1} />
+                <input type="text" placeholder="Keyword 2" style={{ width: "10vw" }} value={this.state.keyword2} onChange={this.keyword2} />
+                <input type="text" placeholder="Keyword 3" style={{ width: "10vw" }} value={this.state.keyword3} onChange={this.keyword3} />
+                <input type="text" placeholder="Keyword 4" style={{ width: "10vw" }} value={this.state.keyword4} onChange={this.keyword4} />
+                <input type="text" placeholder="Keyword 5" style={{ width: "10vw" }} value={this.state.keyword5} onChange={this.keyword5} />
               </label>
             </div>
             <div className="submission-body">
-              <label> Abstract
-                <input type="text" style={{ width: "50vw" }} value={this.state.abstract} onChange={this.abstract} />
+              <label> Abstract (300 words) <br></br>
+                <textarea className="bigText" placeholder="Abstract of the Manuscript"  height="50%" style={{ width: "50vw" }} value={this.state.abstract} onChange={this.abstract} />
               </label>
             </div>
             <br></br>
 
+     
 
             <form onSubmit={this.handleSubmit}>
               <input type="submit" value="Submit" />

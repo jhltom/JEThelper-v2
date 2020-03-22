@@ -34,10 +34,7 @@ export default class Submission extends React.Component {
   }
 
   handleSubmit = (event) => {
-    
-    // const date = new Date(this.state.unixtime * 1000);
-    // alert('A manuscript was submitted: ' + this.state.title + ' at ' + date);
-    // event.preventDefault();
+  
     this.postAuthor();
     this.postManuscript();
 
@@ -71,7 +68,7 @@ export default class Submission extends React.Component {
     }, err => {
       console.warn("err1: ",err);
     }).then ( data =>{
-      alert("Success!", data);
+      // alert("Success!", data);
       this.setState({ authorLast: "" });
       this.setState({ authorFirst: "" });
       this.setState({ institution: "" });

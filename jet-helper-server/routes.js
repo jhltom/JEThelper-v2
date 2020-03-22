@@ -12,18 +12,32 @@ const connection = mysql.createPool(config);
 newSubmission = (req, res) => {
   const data = req.body;
   const query =`
-  INSERT INTO Manuscript (title, dateUnixTime, volume, issue, keyword1, keyword2, keyword3, keyword4, keyword5, abstract )
-  VALUES ("${data.title}", ${data.unixtime}, 33, 2, "${data.keyword1}", "${data.keyword2}", "${data.keyword3}", "${data.keyword4}", "${data.keyword5}", "${data.abstract}");
+  INSERT INTO Manuscript (authordId, title, dateUnixTime, volume, issue, keyword1, keyword2, keyword3, keyword4, keyword5, abstract )
+  VALUES (${data.authordId} , "${data.title}", ${data.unixtime}, 33, 2, "${data.keyword1}", "${data.keyword2}", "${data.keyword3}", "${data.keyword4}", "${data.keyword5}", "${data.abstract}");
   `;
   connection.query(query, (err, results, fields) => {
     if (err) console.log(err);
     else {
-      // res.send(JSON.stringify(results));
+      res.json(results);
+    }
+  });
+};
+
+newAuthor = (req, res) => {
+  const data = req.body;
+  const query =`
+  INSERT INTO Authors (lastName, firstName, institution, position, mailing, number )
+  VALUES ("${data.lastName}" , "${data.firstName}", "${data.institution}", "${data.position}", "${data.mailing}", "${data.number}");
+  `;
+  connection.query(query, (err, results, fields) => {
+    if (err) console.log(err);
+    else {
       res.json(results);
     }
   });
 };
 
 module.exports = {
-	newSubmission: newSubmission,
+  newSubmission: newSubmission,
+  newAuthor: newAuthor
 }

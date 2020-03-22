@@ -17,6 +17,7 @@ export default class Submission extends React.Component {
       email: "",
       telephone: "",
       //manuscript
+      authordId: 3,
       title: "",
       keyword1: "",
       keyword2: "",
@@ -37,9 +38,16 @@ export default class Submission extends React.Component {
     // const date = new Date(this.state.unixtime * 1000);
     // alert('A manuscript was submitted: ' + this.state.title + ' at ' + date);
     // event.preventDefault();
+    this.postAuthor();
+    this.postManuscript();
+
+  }
+
+
+  postAuthor = () => {
 
     const data ={
-
+      authordId: this.state.authordId,
       authorLast: this.state.authorLast,
       authorFirst: this.state.authorFirst,
       institution: this.state.institution,
@@ -47,19 +55,9 @@ export default class Submission extends React.Component {
       address: this.state.address,
       email: this.state.email,
       telephone: this.state.telephone,
-
-      title: this.state.title,
-      keyword1: this.state.keyword1,
-      keyword2: this.state.keyword2,
-      keyword3: this.state.keyword3,
-      keyword4: this.state.keyword4,
-      keyword5: this.state.keyword5,
-      abstract: this.state.abstract,
-
-      unixtime: this.state.unixtime
     }
 
-    fetch("http://localhost:8081/newsubmission", {
+    fetch("http://localhost:8081/newauthor", {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
@@ -81,6 +79,40 @@ export default class Submission extends React.Component {
       this.setState({ address: "" });
       this.setState({ email: "" });
       this.setState({ telephone: "" });
+    }, err => {
+      console.warn("err2: ",err);
+    });
+  }
+
+  postManuscript = () => {
+
+    const data ={
+      authordId: this.state.authordId,
+      title: this.state.title,
+      keyword1: this.state.keyword1,
+      keyword2: this.state.keyword2,
+      keyword3: this.state.keyword3,
+      keyword4: this.state.keyword4,
+      keyword5: this.state.keyword5,
+      abstract: this.state.abstract,
+      unixtime: this.state.unixtime
+    }
+
+    fetch("http://localhost:8081/newsubmission", {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).then ( res =>{
+      console.log("resultado: ", res.json());
+      if (res.status >=400){
+        throw new Error ("Bad response from server. Status: "+res.status);
+      }
+      // alert("resultado: ", res.json());
+      return res.json();
+    }, err => {
+      console.warn("err1: ",err);
+    }).then ( data =>{
+      alert("Success!", data);
       this.setState({ title: "" });
       this.setState({ keyword1: "" });
       this.setState({ keyword2: "" });
@@ -92,6 +124,7 @@ export default class Submission extends React.Component {
     }, err => {
       console.warn("err2: ",err);
     });
+
   }
 
   // update states
@@ -114,7 +147,6 @@ export default class Submission extends React.Component {
     this.setState({ email: event.target.value });
   }
   telephone = (event) => {
-    console.log(event.target.value)
     this.setState({ telephone: event.target.value });
   }
   title = (event) => {

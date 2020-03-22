@@ -3,7 +3,7 @@ JEThelper (Journal Editorial Task Helper) is an Academic Article Submission Mana
 
 ## Features
 #### For Authors
-- [ ] Submit a new manuscript to be reviewed
+- [X] Submit a new manuscript to be reviewed
 - [ ] Check the current status of the blind reviewing process
 
 #### For Reviewers

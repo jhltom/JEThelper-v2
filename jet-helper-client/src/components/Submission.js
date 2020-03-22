@@ -28,12 +28,70 @@ export default class Submission extends React.Component {
       unixtime: 0
     }
   }
+  componentDidMount = () =>{
+    this.setState({ unixtime: Date.now() });
+  }
 
   handleSubmit = (event) => {
-    this.setState({ unixtime: Date.now() });
-    const date = new Date(this.state.unixtime * 1000);
-    alert('A manuscript was submitted: ' + this.state.title + ' at ' + date);
-    event.preventDefault();
+    
+    // const date = new Date(this.state.unixtime * 1000);
+    // alert('A manuscript was submitted: ' + this.state.title + ' at ' + date);
+    // event.preventDefault();
+
+    const data ={
+
+      authorLast: this.state.authorLast,
+      authorFirst: this.state.authorFirst,
+      institution: this.state.institution,
+      position: this.state.position,
+      address: this.state.address,
+      email: this.state.email,
+      telephone: this.state.telephone,
+
+      title: this.state.title,
+      keyword1: this.state.keyword1,
+      keyword2: this.state.keyword2,
+      keyword3: this.state.keyword3,
+      keyword4: this.state.keyword4,
+      keyword5: this.state.keyword5,
+      abstract: this.state.abstract,
+
+      unixtime: this.state.unixtime
+    }
+
+    fetch("http://localhost:8081/newsubmission", {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).then ( res =>{
+      console.log("resultado: ", res.json());
+      if (res.status >=400){
+        throw new Error ("Bad response from server. Status: "+res.status);
+      }
+      // alert("resultado: ", res.json());
+      return res.json();
+    }, err => {
+      console.warn("err1: ",err);
+    }).then ( data =>{
+      alert("Success!", data);
+      this.setState({ authorLast: "" });
+      this.setState({ authorFirst: "" });
+      this.setState({ institution: "" });
+      this.setState({ position: "" });
+      this.setState({ address: "" });
+      this.setState({ email: "" });
+      this.setState({ telephone: "" });
+      this.setState({ title: "" });
+      this.setState({ keyword1: "" });
+      this.setState({ keyword2: "" });
+      this.setState({ keyword3: "" });
+      this.setState({ keyword4: ""});
+      this.setState({ keyword5: "" });
+      this.setState({ abstract: "" });
+      this.setState({ unixtime: 0 });
+    }, err => {
+      console.warn("err2: ",err);
+    });
   }
 
   // update states

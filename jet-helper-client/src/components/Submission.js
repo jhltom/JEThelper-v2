@@ -17,7 +17,7 @@ export default class Submission extends React.Component {
       email: "",
       telephone: "",
       //manuscript
-      authordId: 3,
+      authorId: 3,
       title: "",
       keyword1: "",
       keyword2: "",
@@ -84,7 +84,7 @@ export default class Submission extends React.Component {
   postManuscript = () => {
 
     const data ={
-      authordId: this.state.authordId,
+      authorId: this.state.authorId,
       title: this.state.title,
       keyword1: this.state.keyword1,
       keyword2: this.state.keyword2,

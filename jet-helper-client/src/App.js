@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Home from './components/Home';
 import Submission from './components/Submission';
+import Status from './components/Status';
 import './App.css';
 
 function App() {
@@ -25,6 +26,13 @@ function App() {
 							path="/Home"
 							render={() => (
 								<Home />
+							)}
+						/>
+						<Route
+							exact
+							path="/Status"
+							render={() => (
+								<Status />
 							)}
 						/>
 						<Route

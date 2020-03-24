@@ -1,0 +1,39 @@
+.status-container .status-header{
+  display: flex;
+  flex-flow: row nowrap;
+  height: 40px;
+}
+
+.header-container .headers, .results-container .submissionResults {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.headers .header {
+  flex: 1 0 20%;
+  font-size: 80%;
+}
+
+.status-header{
+  font-weight: bold;
+  text-align: left;
+}
+
+.status-body {
+  text-align: left;
+  margin-left: 2%; 
+  font-size: 80%;
+  position: relative
+}
+
+.less-headspace {
+  padding-top: 1rem !important;
+}
+
+.bigText {
+  height:200px;
+  text-align: "left";
+  overflow-wrap: break-word;
+}

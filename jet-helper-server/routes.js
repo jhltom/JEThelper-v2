@@ -24,8 +24,8 @@ newSubmission = (req, res) => {
   });
 };
 
+/* ---- New Author ---- */
 newAuthor = (req, res) => {
-  
   const data = req.body;
   console.log(data);
   const query =`
@@ -40,7 +40,21 @@ newAuthor = (req, res) => {
   });
 };
 
+/* ---- Get Submissions ---- */
+getAllSubmissions = (req, res) => {
+  var query = `
+    SELECT * FROM Manuscript;
+  `;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+    }
+  });
+}
+
 module.exports = {
   newSubmission: newSubmission,
-  newAuthor: newAuthor
+  newAuthor: newAuthor,
+  getAllSubmissions: getAllSubmissions
 }

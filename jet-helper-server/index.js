@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.post('/newsubmission', routes.newSubmission);
 app.post('/newauthor', routes.newAuthor);
 
-
+app.get('/getallsubmissions', routes.getAllSubmissions);
 
 
 

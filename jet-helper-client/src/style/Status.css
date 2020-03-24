@@ -4,7 +4,7 @@
   height: 40px;
 }
 
-.header-container .headers, .results-container .submissionResults {
+.header-container .headers, .results-container .submission {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -12,8 +12,11 @@
 }
 
 .headers .header {
-  flex: 1 0 20%;
-  font-size: 80%;
+  flex: 1 0 25%;
+}
+
+.submission .date, .submission .authorid, .submission .title, .submission .reviewstatus{
+  flex: 1 0 25%;
 }
 
 .status-header{

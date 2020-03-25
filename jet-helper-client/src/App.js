@@ -7,6 +7,7 @@ import {
 import Home from './components/Home';
 import Submission from './components/Submission';
 import Status from './components/Status';
+import JEThelper from './components/JEThelper';
 import './App.css';
 
 function App() {
@@ -40,6 +41,13 @@ function App() {
 							path="/Submission"
 							render={() => (
 								<Submission />
+							)}
+						/>
+						<Route
+							exact
+							path="/JEThelper"
+							render={() => (
+								<JEThelper />
 							)}
 						/>
 					</Switch>

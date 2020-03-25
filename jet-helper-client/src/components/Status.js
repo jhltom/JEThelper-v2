@@ -9,7 +9,8 @@ export default class Submission extends React.Component {
 
     this.state = {
       foundSubmissions: [],
-      title: ""
+      title: "",
+      authorId: ""
     }
   }
 
@@ -48,8 +49,15 @@ export default class Submission extends React.Component {
     this.setState({ title: event.target.value });
   }
 
+  handleAuthorIdChange = (event) => {
+    this.setState({ authorId: event.target.value });
+  }
+
   submitTitle = () => {
+    console.log(this.state.title);
+    console.log(this.state.authorId);
     alert("submitted!")
+    this.setState({title:"", authorId: ""})
   }
 
   render() {
@@ -58,12 +66,15 @@ export default class Submission extends React.Component {
         <PageNavbar active="Status" />
         <div className="container status-container">
           <div className="jumbotron less-headspace">
-            
+
             <div className="input-container">
+              <input type='text' placeholder="Author ID"
+                value={this.state.authorId}
+                onChange={this.handleAuthorIdChange}
+                className="author-input" />
               <input type='text' placeholder="Title of the Manuscript"
                 value={this.state.title}
                 onChange={this.handleTitleChange}
-                id="manuscriptTitle"
                 className="login-input" />
               <button id="submitTitleBtn" onClick={this.submitTitle} className="submit-btn">Submit</button>
             </div>

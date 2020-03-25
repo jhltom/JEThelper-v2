@@ -14,8 +14,21 @@ export default class Submission extends React.Component {
     }
   }
 
-  componentDidMount = () => {
-    fetch("http://localhost:8081/getallsubmissions",
+  handleTitleChange = (event) => {
+    this.setState({ title: event.target.value });
+  }
+
+  handleAuthorIdChange = (event) => {
+    this.setState({ authorId: event.target.value });
+  }
+
+  submitTitle = () => {
+    console.log(this.state.title);
+    console.log(this.state.authorId);
+    alert("submitted!")
+
+
+    fetch("http://localhost:8081/getmanuscript/"+this.state.authorId+"/"+this.state.title,
       {
         method: 'GET'
       }).then(res => {
@@ -23,6 +36,7 @@ export default class Submission extends React.Component {
       }, err => {
         console.log(err);
       }).then(submissionList => {
+        console.log(submissionList);
         let submissionDivs = submissionList.map((submission, i) => {
           const date = new Date(submission.dateUnixTime);
           return (
@@ -36,27 +50,16 @@ export default class Submission extends React.Component {
           )
         }
         );
-
         this.setState({
           foundSubmissions: submissionDivs
         });
       }, err => {
         console.log(err);
       });
-  }
 
-  handleTitleChange = (event) => {
-    this.setState({ title: event.target.value });
-  }
 
-  handleAuthorIdChange = (event) => {
-    this.setState({ authorId: event.target.value });
-  }
 
-  submitTitle = () => {
-    console.log(this.state.title);
-    console.log(this.state.authorId);
-    alert("submitted!")
+
     this.setState({title:"", authorId: ""})
   }
 

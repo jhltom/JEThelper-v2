@@ -40,6 +40,22 @@ newAuthor = (req, res) => {
   });
 };
 
+/* ---- Get Manuscript ---- */
+getManuscript = (req, res) => {
+  const authorId = req.params.id;
+  const title = req.params.title;
+
+  const query = `
+    SELECT * FROM Manuscript WHERE authorId=${authorId} AND title="${title}" ;
+  `;
+  connection.query(query, function(err, rows, fields) {
+    if (err) console.log(err);
+    else {
+      res.json(rows);
+    }
+  });
+}
+
 /* ---- Get Submissions ---- */
 getAllSubmissions = (req, res) => {
   var query = `
@@ -56,5 +72,6 @@ getAllSubmissions = (req, res) => {
 module.exports = {
   newSubmission: newSubmission,
   newAuthor: newAuthor,
+  getManuscript: getManuscript,
   getAllSubmissions: getAllSubmissions
 }

@@ -8,7 +8,8 @@ export default class Submission extends React.Component {
     super(props);
 
     this.state = {
-      foundSubmissions: []
+      foundSubmissions: [],
+      title: ""
     }
   }
 
@@ -21,31 +22,19 @@ export default class Submission extends React.Component {
       }, err => {
         console.log(err);
       }).then(submissionList => {
-
-        let submissionDivs = submissionList.map((submission, i) =>{
-
-
-          console.log(Date.now())
-          console.log(submission.dateUnixTime);
-          const date = new Date(submission.dateUnixTime );
-          console.log(date);
-
-
-
-
-
+        let submissionDivs = submissionList.map((submission, i) => {
+          const date = new Date(submission.dateUnixTime);
           return (
             <div key={i} className="submission">
-            <div className="authorid">{submission.id}</div>
-            <div className="date">{date.toDateString()}</div>
-            <div className="title">{submission.title}</div>
-            <div className="reviewstatus">{submission.reviewStatus}</div>
-          </div>
+              <div className="authorid">{submission.id}</div>
+              <div className="date">{date.toDateString()}</div>
+              <div className="title">{submission.title}</div>
+              <div className="reviewstatus">{submission.reviewStatus}</div>
+            </div>
 
           )
-          
         }
-          );
+        );
 
         this.setState({
           foundSubmissions: submissionDivs
@@ -55,15 +44,29 @@ export default class Submission extends React.Component {
       });
   }
 
+  handleTitleChange = (event) => {
+    this.setState({ title: event.target.value });
+  }
+
+  submitTitle = () => {
+    alert("submitted!")
+  }
+
   render() {
     return (
       <div className="Status">
         <PageNavbar active="Status" />
         <div className="container status-container">
           <div className="jumbotron less-headspace">
-
-            <div className="status-header"> Submissions for Volume 33 Issue 2 : </div>
-            <br></br>
+            
+            <div className="input-container">
+              <input type='text' placeholder="Title of the Manuscript"
+                value={this.state.title}
+                onChange={this.handleTitleChange}
+                id="manuscriptTitle"
+                className="login-input" />
+              <button id="submitTitleBtn" onClick={this.submitTitle} className="submit-btn">Submit</button>
+            </div>
 
             <div className="header-container">
               <div className="headers">

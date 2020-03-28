@@ -16,9 +16,6 @@ export default class JEThelperMain extends React.Component {
     
     }
   }
-
- 
-
   render() {
     return (
       <div className="JEThelperMain">
@@ -26,17 +23,19 @@ export default class JEThelperMain extends React.Component {
 					<Switch>
 						<Route
 							exact
-							path="/JEThelperMain/"
-							render={() => (
-								<JETsubmissions />
-							)}
+							path="/JEThelper/"
+							component={JETsubmissions}
+							// render={() => (
+							// 	<JETsubmissions />
+							// )}
 						/>
             <Route
 							exact
-							path="/JEThelperMain/"
-							render={() => (
-								<JETsubmissionDetails />
-							)}
+							path="/JEThelper/:submissionId"
+							component={JETsubmissionDetails}
+							// render={() => (
+							// 	<JETsubmissionDetails />
+							// )}
 						/>
 					</Switch>
 				</Router>

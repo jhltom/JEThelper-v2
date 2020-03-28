@@ -1,7 +1,10 @@
 import React from 'react';
-import '../style/JEThelper.css';
+import '../../style/JEThelper.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PageNavbar from './PageNavbar';
+import PageNavbar from '../PageNavbar';
+import {
+  Link,
+} from "react-router-dom";
 
 export default class JETsubmissions extends React.Component {
   constructor(props) {
@@ -10,7 +13,7 @@ export default class JETsubmissions extends React.Component {
     this.state = {
       foundSubmissions: [],
       accessGranted: false,
-      accessKey: ""
+      accessKey: "",
     }
   }
 
@@ -26,13 +29,20 @@ export default class JETsubmissions extends React.Component {
         let submissionDivs = submissionList.map((submission, i) => {
           const date = new Date(submission.dateUnixTime);
           return (
+
             <div key={i} className="submission">
-              <div className="authorid">{submission.id}</div>
+              <div className="authorid">{submission.authorId}</div>
               <div className="date">{date.toDateString()}</div>
               <div className="title">{submission.title}</div>
-              <div className="reviewstatus">{submission.reviewStatus}</div>
+              <Link
+                className="reviewstatus"
+                to={{
+                  pathname: `/JEThelper/${submission.id}`,
+                  state: { submission: submission }
+                }}>{submission.reviewStatus}</Link>
             </div>
-          )}
+          )
+        }
         );
         this.setState({
           foundSubmissions: submissionDivs
@@ -47,20 +57,22 @@ export default class JETsubmissions extends React.Component {
   }
 
   submitAccessKey = () => {
-    if (this.state.accessKey === "testing"){
+    if (this.state.accessKey === "testing") {
       alert("Access Granted! ");
-      this.setState({accessGranted: true})
+      this.setState({ accessGranted: true })
     } else {
       alert("Access Denied! Only AJLAS editors have access.");
     }
   }
 
   render() {
+
     return (
       <div className="JETsubmissions">
-        <PageNavbar active="JEThelperMain" />
+        <PageNavbar active="JEThelper" />
         <div className="container jet-container">
           <div className="jumbotron less-headspace">
+
 
             {this.state.accessGranted ? (
 

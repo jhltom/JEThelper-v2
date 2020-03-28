@@ -7,7 +7,7 @@ import {
 import Home from './components/Home';
 import Submission from './components/Submission';
 import Status from './components/Status';
-import JEThelperMain from './components/JEThelperMain';
+import JEThelperMain from './components/JEThelper/JEThelperMain';
 import './App.css';
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
 						/>
 						<Route
 							exact
-							path="/JEThelperMain"
+							path="/JEThelper"
 							render={() => (
 								<JEThelperMain />
 							)}

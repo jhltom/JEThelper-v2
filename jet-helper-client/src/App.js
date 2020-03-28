@@ -7,7 +7,7 @@ import {
 import Home from './components/Home';
 import Submission from './components/Submission';
 import Status from './components/Status';
-import JEThelper from './components/JEThelper';
+import JEThelperMain from './components/JEThelperMain';
 import './App.css';
 
 function App() {
@@ -45,9 +45,9 @@ function App() {
 						/>
 						<Route
 							exact
-							path="/JEThelper"
+							path="/JEThelperMain"
 							render={() => (
-								<JEThelper />
+								<JEThelperMain />
 							)}
 						/>
 					</Switch>

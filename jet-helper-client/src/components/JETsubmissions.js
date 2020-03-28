@@ -3,7 +3,7 @@ import '../style/JEThelper.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PageNavbar from './PageNavbar';
 
-export default class JEThelper extends React.Component {
+export default class JETsubmissions extends React.Component {
   constructor(props) {
     super(props);
 
@@ -57,8 +57,8 @@ export default class JEThelper extends React.Component {
 
   render() {
     return (
-      <div className="JEThelper">
-        <PageNavbar active="JEThelper" />
+      <div className="JETsubmissions">
+        <PageNavbar active="JEThelperMain" />
         <div className="container jet-container">
           <div className="jumbotron less-headspace">
 

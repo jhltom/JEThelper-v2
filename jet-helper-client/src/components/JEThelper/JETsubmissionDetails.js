@@ -24,6 +24,9 @@ export default class JETsubmissionDetails extends React.Component {
     }
   }
 
+  /**
+   * componentDidMount
+   */
   componentDidMount = () => {
     const { submission } = this.props.location.state
 
@@ -67,6 +70,21 @@ export default class JETsubmissionDetails extends React.Component {
     });
   }
 
+  /**
+   * Methods
+   */
+  submitReviewer = () =>{
+    let selectReviewer = 0;
+    if (!this.state.reviewer1) selectReviewer=1
+    else if (!this.state.reviewer2) selectReviewer=2;
+    else selectReviewer=3;
+
+    
+  }
+
+  /**
+   * setStates
+   */
   lastName = (event) => {
     this.setState({ lastName: event.target.value });
   }
@@ -149,11 +167,9 @@ export default class JETsubmissionDetails extends React.Component {
                       <input type="text" placeholder="Phone # with Country Code" style={{ width: "50vw" }} value={this.state.number} onChange={this.number} />
                     </label>
                   </div>
-                  <button id="submitTitleBtn" onClick={this.submitTitle} className="submit-btn">Submit</button>
+                  <button id="submitTitleBtn" onClick={this.submitReviewer} className="submit-btn">Submit</button>
                 </div>
               }
-
-              
 
             </div>
           </div>

@@ -40,6 +40,22 @@ newAuthor = (req, res) => {
   });
 };
 
+/* ---- New Reviewer ---- */
+newReviewer = (req, res) => {
+  const data = req.body;
+  console.log(data);
+  const query =`
+  INSERT INTO Reviewers (lastName, firstName, institution, position, mailing, email, number )
+  VALUES ("${data.lastName}" , "${data.firstName}", "${data.institution}", "${data.position}", "${data.mailing}", "${data.email}", "${data.number}");
+  `;
+  connection.query(query, (err, results, fields) => {
+    if (err) console.log(err);
+    else {
+      res.json(results);
+    }
+  });
+};
+
 /* ---- Get Manuscript ---- */
 getManuscript = (req, res) => {
   const authorId = req.params.id;
@@ -72,6 +88,7 @@ getAllSubmissions = (req, res) => {
 module.exports = {
   newSubmission: newSubmission,
   newAuthor: newAuthor,
+  newReviewer: newReviewer,
   getManuscript: getManuscript,
   getAllSubmissions: getAllSubmissions
 }

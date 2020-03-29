@@ -64,7 +64,7 @@ export default class JETsubmissionDetails extends React.Component {
     return (
       <div className="JETsubmissionDetails">
         <PageNavbar active="JEThelper" />
-        <div className="container jet-container">
+        <div className="container jetdetails-container">
           <div className="jumbotron less-headspace">
             <div>
               <div className="header-container">
@@ -81,6 +81,38 @@ export default class JETsubmissionDetails extends React.Component {
               <div className="results-container" id="results">
                 {this.state.submission}
               </div>
+
+
+              {this.state.reviewer1 ?
+                <div></div>
+                :
+                <div>
+                  <br></br>
+                  <div className="jetdetails-header"> Add Reviewer 1 : </div>
+                  <br></br>
+                </div>
+              }
+
+              {this.state.reviewer2 ?
+                <div></div>
+                :
+                <div>
+                  <br></br>
+                  <div className="jetdetails-header"> Add Reviewer 2 : </div>
+                  <br></br>
+                </div>
+              }
+
+              {this.state.reviewer3 ?
+                <div></div>
+                :
+                <div>
+                  <br></br>
+                  <div className="jetdetails-header"> Add Reviewer 3 : </div>
+                  <br></br>
+                </div>
+              }
+
             </div>
           </div>
         </div>

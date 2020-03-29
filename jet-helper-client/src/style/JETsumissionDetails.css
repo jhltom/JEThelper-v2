@@ -1,7 +1,13 @@
-.jet-container .jet-header{
+.jetdetails-container .jetdetails-header{
   display: flex;
   flex-flow: row nowrap;
   height: 40px;
+}
+
+.jetdetails-header{
+  font-weight: bold;
+  text-align: left;
+  color: #6454bd;
 }
 
 .header-container .headers, .results-container .submission {

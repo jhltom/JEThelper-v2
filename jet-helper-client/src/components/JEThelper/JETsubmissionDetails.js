@@ -108,7 +108,7 @@ export default class JETsubmissionDetails extends React.Component {
     }, err => {
       console.warn("err1: ",err);
     }).then ( data =>{
-      // alert("Success!", data);
+      alert("Success!", data);
       this.setState({ lastName: "" });
       this.setState({ firstName: "" });
       this.setState({ institution: "" });

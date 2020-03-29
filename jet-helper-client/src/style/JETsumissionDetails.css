@@ -10,6 +10,10 @@
   color: #6454bd;
 }
 
+.less-headspace {
+  padding-top: 1rem !important;
+}
+
 .header-container .headers, .results-container .submission {
   display: flex;
   flex-flow: row nowrap;
@@ -30,7 +34,34 @@
   font-size: 80%;
 }
 
-.less-headspace {
-  padding-top: 1rem !important;
+.placeholder-body {
+  text-align: left;
+  margin-left: 2%; 
+  font-size: 80%;
+  position: relative
 }
+
+.submit-btn {
+  margin-left: 10px;
+  width: 100px;
+  height: 36px;
+  border: none;
+  padding: 2px 16px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  outline: none;
+  background: #6454bd;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.submit-btn:hover {
+  background: #c561ae;
+}
+
+.submit-btn:active {
+  background: #d86bbe;
+}
+
 

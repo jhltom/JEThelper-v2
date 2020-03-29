@@ -83,35 +83,48 @@ export default class JETsubmissionDetails extends React.Component {
               </div>
 
 
-              {this.state.reviewer1 ?
+              {this.state.reviewer1 &&  this.state.reviewer2 && this.state.reviewer3?
                 <div></div>
                 :
                 <div>
                   <br></br>
-                  <div className="jetdetails-header"> Add Reviewer 1 : </div>
-                  <br></br>
+                  <div className="jetdetails-header"> Add Reviewer  </div>
+                  <div className="placeholder-body">
+                    <label> Reviewer <br></br>
+                      <input type="text" placeholder="Last name" style={{ width: "25vw" }} value={this.state.authorLast} onChange={this.authorLast} /> {" "}
+                      <input type="text" placeholder="First name" style={{ width: "25vw" }} value={this.state.authorFirst} onChange={this.authorFirst} />
+                    </label>
+                  </div>
+                  <div className="placeholder-body">
+                    <label> Institution <br></br>
+                      <input type="text" placeholder="University, Organization, Research Institution, Laboratory, etc. " style={{ width: "50vw" }} value={this.state.institution} onChange={this.institution} />
+                    </label>
+                  </div>
+                  <div className="placeholder-body">
+                    <label> Title / Position <br></br>
+                      <input type="text" placeholder="Assistant Professor, Associate Professor, Senior Researcher, etc. " style={{ width: "50vw" }} value={this.state.position} onChange={this.position} />
+                    </label>
+                  </div>
+                  <div className="placeholder-body">
+                    <label> Mailing Address <br></br>
+                      <input type="text" placeholder="Preferred Mailing Address" style={{ width: "50vw" }} value={this.state.address} onChange={this.address} />
+                    </label>
+                  </div>
+                  <div className="placeholder-body">
+                    <label> Email <br></br>
+                      <input type="text" placeholder="Email address" style={{ width: "50vw" }} value={this.state.email} onChange={this.email} />
+                    </label>
+                  </div>
+                  <div className="placeholder-body">
+                    <label> Telephone Number <br></br>
+                      <input type="text" placeholder="Phone # with Country Code" style={{ width: "50vw" }} value={this.state.telephone} onChange={this.telephone} />
+                    </label>
+                  </div>
+                  <button id="submitTitleBtn" onClick={this.submitTitle} className="submit-btn">Submit</button>
                 </div>
               }
 
-              {this.state.reviewer2 ?
-                <div></div>
-                :
-                <div>
-                  <br></br>
-                  <div className="jetdetails-header"> Add Reviewer 2 : </div>
-                  <br></br>
-                </div>
-              }
-
-              {this.state.reviewer3 ?
-                <div></div>
-                :
-                <div>
-                  <br></br>
-                  <div className="jetdetails-header"> Add Reviewer 3 : </div>
-                  <br></br>
-                </div>
-              }
+              
 
             </div>
           </div>

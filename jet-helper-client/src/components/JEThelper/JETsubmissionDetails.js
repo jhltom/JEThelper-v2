@@ -79,7 +79,46 @@ export default class JETsubmissionDetails extends React.Component {
     else if (!this.state.reviewer2) selectReviewer=2;
     else selectReviewer=3;
 
-    
+    this.postReviewer();
+  }
+
+  postReviewer = () => {
+
+    const data ={
+      lastName: this.state.lastName,
+      firstName: this.state.firstName,
+      institution: this.state.institution,
+      position: this.state.position,
+      mailing: this.state.mailing,
+      email: this.state.email,
+      number: this.state.number,
+    }
+
+    fetch("http://localhost:8081/newreviewer", {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).then ( res =>{
+      console.log("resultado: ", res.json());
+      if (res.status >=400){
+        throw new Error ("Bad response from server. Status: "+res.status);
+      }
+      // alert("resultado: ", res.json());
+      return res.json();
+    }, err => {
+      console.warn("err1: ",err);
+    }).then ( data =>{
+      // alert("Success!", data);
+      this.setState({ lastName: "" });
+      this.setState({ firstName: "" });
+      this.setState({ institution: "" });
+      this.setState({ position: "" });
+      this.setState({ mailing: "" });
+      this.setState({ email: "" });
+      this.setState({ number: "" });
+    }, err => {
+      console.warn("err2: ",err);
+    });
   }
 
   /**

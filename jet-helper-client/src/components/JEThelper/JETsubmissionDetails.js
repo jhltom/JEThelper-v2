@@ -11,7 +11,16 @@ export default class JETsubmissionDetails extends React.Component {
       submission: [],
       reviewer1: false,
       reviewer2: false,
-      reviewer3: false
+      reviewer3: false,
+
+      //reviewer info
+      lastName: "",
+      firstName: "",
+      institution: "",
+      position: "",
+      mailing: "",
+      email: "",
+      number: ""
     }
   }
 
@@ -56,8 +65,28 @@ export default class JETsubmissionDetails extends React.Component {
     this.setState({
       submission: submissionDivs
     });
+  }
 
-
+  lastName = (event) => {
+    this.setState({ lastName: event.target.value });
+  }
+  firstName = (event) => {
+    this.setState({ firstName: event.target.value });
+  }
+  institution = (event) => {
+    this.setState({ institution: event.target.value });
+  }
+  position = (event) => {
+    this.setState({ position: event.target.value });
+  }
+  mailing = (event) => {
+    this.setState({ mailing: event.target.value });
+  }
+  email = (event) => {
+    this.setState({ email: event.target.value });
+  }
+  number = (event) => {
+    this.setState({ number: event.target.value });
   }
 
   render() {
@@ -91,8 +120,8 @@ export default class JETsubmissionDetails extends React.Component {
                   <div className="jetdetails-header"> Add Reviewer  </div>
                   <div className="placeholder-body">
                     <label> Reviewer <br></br>
-                      <input type="text" placeholder="Last name" style={{ width: "25vw" }} value={this.state.authorLast} onChange={this.authorLast} /> {" "}
-                      <input type="text" placeholder="First name" style={{ width: "25vw" }} value={this.state.authorFirst} onChange={this.authorFirst} />
+                      <input type="text" placeholder="Last name" style={{ width: "25vw" }} value={this.state.lastName} onChange={this.lastName} /> {" "}
+                      <input type="text" placeholder="First name" style={{ width: "25vw" }} value={this.state.firstName} onChange={this.firstName} />
                     </label>
                   </div>
                   <div className="placeholder-body">
@@ -107,7 +136,7 @@ export default class JETsubmissionDetails extends React.Component {
                   </div>
                   <div className="placeholder-body">
                     <label> Mailing Address <br></br>
-                      <input type="text" placeholder="Preferred Mailing Address" style={{ width: "50vw" }} value={this.state.address} onChange={this.address} />
+                      <input type="text" placeholder="Preferred Mailing Address" style={{ width: "50vw" }} value={this.state.mailing} onChange={this.mailing} />
                     </label>
                   </div>
                   <div className="placeholder-body">
@@ -117,7 +146,7 @@ export default class JETsubmissionDetails extends React.Component {
                   </div>
                   <div className="placeholder-body">
                     <label> Telephone Number <br></br>
-                      <input type="text" placeholder="Phone # with Country Code" style={{ width: "50vw" }} value={this.state.telephone} onChange={this.telephone} />
+                      <input type="text" placeholder="Phone # with Country Code" style={{ width: "50vw" }} value={this.state.number} onChange={this.number} />
                     </label>
                   </div>
                   <button id="submitTitleBtn" onClick={this.submitTitle} className="submit-btn">Submit</button>

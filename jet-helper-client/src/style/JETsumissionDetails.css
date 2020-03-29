@@ -1,0 +1,30 @@
+.jet-container .jet-header{
+  display: flex;
+  flex-flow: row nowrap;
+  height: 40px;
+}
+
+.header-container .headers, .results-container .submission {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  height: 40px;
+}
+
+.headers .header {
+  flex: 1 0 14%;
+}
+
+.submission .authorid, .submission .reviewer1Id, .submission .reviewer2Id, .submission .reviewer3Id{
+  flex: 1 0 14%;
+  font-size: 80%;
+}
+.submission .date, .submission .title,  .submission .reviewstatus{
+  flex: 1 0 14%;
+  font-size: 80%;
+}
+
+.less-headspace {
+  padding-top: 1rem !important;
+}
+

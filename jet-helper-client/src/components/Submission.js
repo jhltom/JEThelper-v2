@@ -17,7 +17,7 @@ export default class Submission extends React.Component {
       email: "",
       telephone: "",
       //manuscript
-      authorId: 3,
+      authorId: 0,
       title: "",
       keyword1: "",
       keyword2: "",
@@ -48,30 +48,22 @@ export default class Submission extends React.Component {
         console.log(err);
       }).then(result => {
         const authorId = result[0].id + 1;
-        console.log(authorId);
         this.setState({authorId: authorId});
       }, err => {
         console.log(err);
       });
   }
 
-
-
   /**
    * handleSubmit()
    */
   handleSubmit = (event) => {
-
     this.postAuthor();
     this.postManuscript();
-
   }
 
-
   postAuthor = () => {
-
     const data = {
-      authordId: this.state.authordId,
       authorLast: this.state.authorLast,
       authorFirst: this.state.authorFirst,
       institution: this.state.institution,

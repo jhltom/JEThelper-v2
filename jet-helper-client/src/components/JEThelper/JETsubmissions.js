@@ -12,7 +12,7 @@ export default class JETsubmissions extends React.Component {
 
     this.state = {
       foundSubmissions: [],
-      accessGranted: false,
+      accessGranted: true,
       accessKey: "",
     }
   }

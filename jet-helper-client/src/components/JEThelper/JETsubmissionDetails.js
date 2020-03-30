@@ -12,6 +12,7 @@ export default class JETsubmissionDetails extends React.Component {
       reviewer1: false,
       reviewer2: false,
       reviewer3: false,
+      reviewerdId: null,
 
       //reviewer info
       lastName: "",
@@ -28,17 +29,41 @@ export default class JETsubmissionDetails extends React.Component {
    * componentDidMount
    */
   componentDidMount = () => {
-    const { submission } = this.props.location.state
+    this.getNewReviewerId();
+    this.getSubmission();
+  }
 
+  getNewReviewerId = () =>{
+    fetch("http://localhost:8081/newreviewerid",
+      {
+        method: 'GET'
+      }).then(res => {
+        return res.json();
+      }, err => {
+        console.log(err);
+      }).then(result => {
+        const reviewerdId = result[0].id + 1;
+        this.setState({reviewerdId: reviewerdId});
+      }, err => {
+        console.log(err);
+      });
+
+  }
+
+  getSubmission = () =>{
+    const { submission } = this.props.location.state
     const date = new Date(submission.dateUnixTime);
 
     if (submission.reviewer1Id) {
+      console.log("aqui1")
       this.setState({ reviewer1: true });
     }
     if (submission.reviewer2Id) {
+      console.log("aqui2")
       this.setState({ reviewer2: true });
     }
     if (submission.reviewer3Id) {
+      console.log("aqui3")
       this.setState({ reviewer3: true });
     }
 
@@ -47,17 +72,17 @@ export default class JETsubmissionDetails extends React.Component {
         <div className="authorid">{submission.authorId}</div>
         <div className="date">{date.toDateString()}</div>
         <div className="title">{submission.title}</div>
-        {this.state.reviewer1 ?
+        {submission.reviewer1Id ?
           <div className="reviewer1Id">{submission.reviewer1Id}</div>
           :
           <div className="reviewer1Id">-</div>
         }
-        {this.state.reviewer2 ?
+        {submission.reviewer2Id ?
           <div className="reviewer2Id">{submission.reviewer2Id}</div>
           :
           <div className="reviewer2Id">-</div>
         }
-        {this.state.reviewer3 ?
+        {submission.reviewer3Id ?
           <div className="reviewer3Id">{submission.reviewer3Id}</div>
           :
           <div className="reviewer3Id">-</div>
@@ -71,7 +96,7 @@ export default class JETsubmissionDetails extends React.Component {
   }
 
   /**
-   * Methods
+   * Submit methods
    */
   submitReviewer = () =>{
     // let selectReviewer = 0;

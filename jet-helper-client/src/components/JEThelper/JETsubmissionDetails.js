@@ -43,11 +43,11 @@ export default class JETsubmissionDetails extends React.Component {
         console.log(err);
       }).then(result => {
         const reviewerdId = result[0].id + 1;
+        console.log(reviewerdId)
         this.setState({reviewerdId: reviewerdId});
       }, err => {
         console.log(err);
       });
-
   }
 
   getSubmission = () =>{

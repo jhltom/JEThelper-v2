@@ -19,6 +19,7 @@ app.post('/newreviewer', routes.newReviewer);
 app.get('/getmanuscript/:id/:title', routes.getManuscript);
 app.get('/getallsubmissions', routes.getAllSubmissions);
 app.get('/newauthorid', routes.getNewAuthorId);
+app.get('/newreviewerId', routes.getNewReviewerId);
 
 
 //testing

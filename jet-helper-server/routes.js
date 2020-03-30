@@ -101,9 +101,21 @@ getNewAuthorId = (req, res) => {
   });
 };
 
+/* ---- Get New Reviewer Id ---- */
+getNewReviewerId = (req, res) => {
+  const query =`
+  select count(*) as id from Reviewers;
+  `;
+  connection.query(query, (err, results, fields) => {
+    if (err) console.log(err);
+    else {
+      res.json(results)
+    }
+  });
+};
+
 
 /* ---- Test Post ---- */
-
 testPost = (req, res, next) => {
   const data = req.body;
   console.log(data);
@@ -113,9 +125,9 @@ testPost = (req, res, next) => {
   `;
   connection.query(query, function (error, results, fields) {
       if(error) throw error;
-      res.send(JSON.stringify(results));
-  })};
-
+      res.send(JSON.stringify(results)); 
+    })
+  };
 /* ---- Test Last Id ---- */
 lastID = (req, res) => {
   console.log("lastId called")
@@ -141,6 +153,7 @@ module.exports = {
   getAllSubmissions: getAllSubmissions,
 
   getNewAuthorId:getNewAuthorId,
+  getNewReviewerId: getNewReviewerId,
 
   //testing routes
   testPost:testPost,

@@ -16,6 +16,8 @@ export default class Test extends React.Component {
 
   handleSubmit = (event) => {
     this.postAuthor();
+    this.getLastId();
+    
   }
 
   postAuthor = () => {
@@ -41,10 +43,26 @@ export default class Test extends React.Component {
     }).then(data => {
       console.log("Success!", data);
       this.setState({ authorLast: "" });
-      this.setState({ authorFirst: "" });
+      this.setState({ authorFirst: "" });  
     }, err => {
       console.warn("err2: ", err);
     });
+  }
+
+  getLastId = () => {
+    console.warn("get last id!!")
+    fetch("http://localhost:8081/lastid",
+      {
+        method: 'GET'
+      }).then(res => {
+        return res.json();
+      }, err => {
+        console.log(err);
+      }).then(result => {
+        console.log("ID: ", result[0]);
+      }, err => {
+        console.log(err);
+      });
   }
 
 

@@ -18,7 +18,7 @@ app.post('/testPost', routes.testPost);
 
 app.get('/getmanuscript/:id/:title', routes.getManuscript);
 app.get('/getallsubmissions', routes.getAllSubmissions);
-
+app.get('/lastid', routes.lastID);
 
 
 

@@ -8,6 +8,21 @@ const connection = mysql.createPool(config);
 /* ------------------- Route Handlers --------------- */
 /* -------------------------------------------------- */
 
+/* ---- Get Last Insert Id ---- */
+lastID = (req, res) => {
+  console.log("lastId called")
+  const query =`
+  select LAST_INSERT_ID();
+  `;
+  connection.query(query, (err, results, fields) => {
+    if (err) console.log(err);
+    else {
+      res.json(results)
+    }
+  });
+};
+
+
 /* ---- New Submission ---- */
 newSubmission = (req, res) => {
   const data = req.body;
@@ -123,5 +138,6 @@ module.exports = {
   getAllSubmissions: getAllSubmissions,
 
   //testing routes
-  testPost:testPost
+  testPost:testPost,
+  lastID:lastID
 }

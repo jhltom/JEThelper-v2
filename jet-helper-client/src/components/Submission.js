@@ -29,10 +29,26 @@ export default class Submission extends React.Component {
       unixtime: 0
     }
   }
+
+  /**
+   * componenetDidMount()
+   */
   componentDidMount = () =>{
+    this.getNewAuthorId();
+
+
     this.setState({ unixtime: Date.now() });
   }
 
+  getNewAuthorId = () =>{
+
+  }
+
+
+
+  /**
+   * handleSubmit()
+   */
   handleSubmit = (event) => {
   
     this.postAuthor();

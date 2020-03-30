@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Submission from './components/Submission';
 import Status from './components/Status';
 import JEThelperMain from './components/JEThelper/JEThelperMain';
+import Test from './components/Test';
 import './App.css';
 
 function App() {
@@ -48,6 +49,13 @@ function App() {
 							path="/JEThelper"
 							render={() => (
 								<JEThelperMain />
+							)}
+						/>
+						<Route
+							exact
+							path="/Test"
+							render={() => (
+								<Test />
 							)}
 						/>
 					</Switch>

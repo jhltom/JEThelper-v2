@@ -34,7 +34,7 @@ export default class JETsubmissionDetails extends React.Component {
     this.getSubmission();
   }
 
-  getNewReviewerId = () =>{
+  getNewReviewerId = () => {
     fetch("http://localhost:8081/newreviewerid",
       {
         method: 'GET'
@@ -45,16 +45,16 @@ export default class JETsubmissionDetails extends React.Component {
       }).then(result => {
         const reviewerdId = result[0].id + 1;
         console.log(reviewerdId)
-        this.setState({reviewerdId: reviewerdId});
+        this.setState({ reviewerdId: reviewerdId });
       }, err => {
         console.log(err);
       });
   }
 
-  getSubmission = () =>{
+  getSubmission = () => {
     const { submission } = this.props.location.state
-    this.setState({manuscriptId: submission.id})
-    console.log("manuscript id :",submission.id)
+    this.setState({ manuscriptId: submission.id })
+    console.log("manuscript id :", submission.id)
     const date = new Date(submission.dateUnixTime);
 
     if (submission.reviewer1Id) {
@@ -98,14 +98,17 @@ export default class JETsubmissionDetails extends React.Component {
   /**
    * Submit methods
    */
-  submitReviewer = () =>{
+  submitReviewer = () => {
     let selectReviewer = 0;
-    if (!this.state.reviewer1) selectReviewer=1
-    else if (!this.state.reviewer2) selectReviewer=2;
-    else selectReviewer=3;
+    if (!this.state.reviewer1) selectReviewer = 1
+    else if (!this.state.reviewer2) selectReviewer = 2;
+    else selectReviewer = 3;
 
-    this.postReviewer();
-    this.updateReviewerInManuscript(selectReviewer);
+    this.postReviewer()
+    this.updateReviewerInManuscript(selectReviewer)
+    setTimeout(1000);
+    alert("Reviewer Added!")
+    // this.props.history.push('/JetHelper')
   }
 
   updateReviewerInManuscript = (reviewer) => {
@@ -130,7 +133,14 @@ export default class JETsubmissionDetails extends React.Component {
       console.warn("err1: ", err);
     }).then(data => {
       console.log(data)
-      this.setState({ reviewerId: this.state.reviewerId+1});
+      this.setState({ reviewerId: this.state.reviewerId + 1 });
+      this.setState({ lastName: "" });
+      this.setState({ firstName: "" });
+      this.setState({ institution: "" });
+      this.setState({ position: "" });
+      this.setState({ mailing: "" });
+      this.setState({ email: "" });
+      this.setState({ number: "" });
     }, err => {
       console.warn("err2: ", err);
     });
@@ -139,7 +149,7 @@ export default class JETsubmissionDetails extends React.Component {
 
   postReviewer = () => {
 
-    const data ={
+    const data = {
       lastName: this.state.lastName,
       firstName: this.state.firstName,
       institution: this.state.institution,
@@ -151,17 +161,17 @@ export default class JETsubmissionDetails extends React.Component {
 
     fetch("http://localhost:8081/newreviewer", {
       method: "POST",
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    }).then ( res =>{
+    }).then(res => {
       console.log("resultado: ", res.json());
-      if (res.status >=400){
-        throw new Error ("Bad response from server. Status: "+res.status);
+      if (res.status >= 400) {
+        throw new Error("Bad response from server. Status: " + res.status);
       }
       return res.json();
     }, err => {
-      console.warn("err1: ",err);
-    }).then ( data =>{
+      console.warn("err1: ", err);
+    }).then(data => {
       this.setState({ lastName: "" });
       this.setState({ firstName: "" });
       this.setState({ institution: "" });
@@ -170,7 +180,7 @@ export default class JETsubmissionDetails extends React.Component {
       this.setState({ email: "" });
       this.setState({ number: "" });
     }, err => {
-      console.warn("err2: ",err);
+      console.warn("err2: ", err);
     });
   }
 
@@ -222,7 +232,7 @@ export default class JETsubmissionDetails extends React.Component {
               </div>
 
 
-              {this.state.reviewer1 &&  this.state.reviewer2 && this.state.reviewer3?
+              {this.state.reviewer1 && this.state.reviewer2 && this.state.reviewer3 ?
                 <div></div>
                 :
                 <div>

@@ -87,20 +87,32 @@ getAllSubmissions = (req, res) => {
 
 
 /* ---- Test Post ---- */
-testPost = (req, res) => {
+// testPost = (req, res) => {
+//   const data = req.body;
+//   console.log(data);
+  // const query =`
+  // INSERT INTO TestPost (lastName, firstName)
+  // VALUES ("${data.lastName}" , "${data.firstName}");
+  // `;
+//   connection.query(query, (err, results, fields) => {
+//     if (err) console.log(err);
+//     else {
+//       res.send(JSON.stringify(results));
+//     }
+//   });
+// };
+
+testPost = (req, res, next) => {
   const data = req.body;
   console.log(data);
   const query =`
   INSERT INTO TestPost (lastName, firstName)
   VALUES ("${data.lastName}" , "${data.firstName}");
   `;
-  connection.query(query, (err, results, fields) => {
-    if (err) console.log(err);
-    else {
-      res.json(results);
-    }
-  });
-};
+  connection.query(query, function (error, results, fields) {
+      if(error) throw error;
+      res.send(JSON.stringify(results));
+  })};
 
 
 module.exports = {

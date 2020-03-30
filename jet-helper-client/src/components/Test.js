@@ -11,59 +11,39 @@ export default class Test extends React.Component {
       //contact information
       authorLast: "",
       authorFirst: "",
-      institution: "",
-      position: "",
-      address: "",
-      email: "",
-      telephone: "",
-      //manuscript
-      authorId: 3,
-      title: "",
-      keyword1: "",
-      keyword2: "",
-      keyword3: "",
-      keyword4: "",
-      keyword5: "",
-      abstract: "",
-      //submission
-      unixtime: 0
     }
-  }
-  componentDidMount = () =>{
-    
   }
 
   handleSubmit = (event) => {
     this.postAuthor();
   }
 
-
   postAuthor = () => {
 
-    const data ={
-      authorLast: this.state.authorLast,
-      authorFirst: this.state.authorFirst,
+    const data = {
+      lastName: this.state.authorLast,
+      firstName: this.state.authorFirst,
     }
 
-    fetch("http://localhost:8081/test", {
+    fetch("http://localhost:8081/testPost", {
       method: "POST",
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    }).then ( res =>{
+    }).then(res => {
       console.log("resultado: ", res.json());
-      if (res.status >=400){
-        throw new Error ("Bad response from server. Status: "+res.status);
+      if (res.status >= 400) {
+        throw new Error("Bad response from server. Status: " + res.status);
       }
       // alert("resultado: ", res.json());
       return res.json();
     }, err => {
-      console.warn("err1: ",err);
-    }).then ( data =>{
-      // alert("Success!", data);
+      console.warn("err1: ", err);
+    }).then(data => {
+      console.log("Success!", data);
       this.setState({ authorLast: "" });
       this.setState({ authorFirst: "" });
     }, err => {
-      console.warn("err2: ",err);
+      console.warn("err2: ", err);
     });
   }
 
@@ -92,7 +72,7 @@ export default class Test extends React.Component {
                 <input type="text" placeholder="First name" style={{ width: "25vw" }} value={this.state.authorFirst} onChange={this.authorFirst} />
               </label>
             </div>
-            
+
             <form onSubmit={this.handleSubmit}>
               <input type="submit" value="Submit" />
             </form>

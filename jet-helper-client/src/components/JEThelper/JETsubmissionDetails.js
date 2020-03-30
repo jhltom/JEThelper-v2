@@ -74,10 +74,10 @@ export default class JETsubmissionDetails extends React.Component {
    * Methods
    */
   submitReviewer = () =>{
-    let selectReviewer = 0;
-    if (!this.state.reviewer1) selectReviewer=1
-    else if (!this.state.reviewer2) selectReviewer=2;
-    else selectReviewer=3;
+    // let selectReviewer = 0;
+    // if (!this.state.reviewer1) selectReviewer=1
+    // else if (!this.state.reviewer2) selectReviewer=2;
+    // else selectReviewer=3;
 
     this.postReviewer();
   }

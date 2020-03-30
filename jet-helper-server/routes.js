@@ -8,19 +8,7 @@ const connection = mysql.createPool(config);
 /* ------------------- Route Handlers --------------- */
 /* -------------------------------------------------- */
 
-/* ---- Get Last Insert Id ---- */
-lastID = (req, res) => {
-  console.log("lastId called")
-  const query =`
-  select LAST_INSERT_ID();
-  `;
-  connection.query(query, (err, results, fields) => {
-    if (err) console.log(err);
-    else {
-      res.json(results)
-    }
-  });
-};
+
 
 
 /* ---- New Submission ---- */
@@ -102,20 +90,6 @@ getAllSubmissions = (req, res) => {
 
 
 /* ---- Test Post ---- */
-// testPost = (req, res) => {
-//   const data = req.body;
-//   console.log(data);
-  // const query =`
-  // INSERT INTO TestPost (lastName, firstName)
-  // VALUES ("${data.lastName}" , "${data.firstName}");
-  // `;
-//   connection.query(query, (err, results, fields) => {
-//     if (err) console.log(err);
-//     else {
-//       res.send(JSON.stringify(results));
-//     }
-//   });
-// };
 
 testPost = (req, res, next) => {
   const data = req.body;
@@ -128,6 +102,20 @@ testPost = (req, res, next) => {
       if(error) throw error;
       res.send(JSON.stringify(results));
   })};
+
+/* ---- Test Last Id ---- */
+lastID = (req, res) => {
+  console.log("lastId called")
+  const query =`
+  select count(*) as id from TestPost
+  `;
+  connection.query(query, (err, results, fields) => {
+    if (err) console.log(err);
+    else {
+      res.json(results)
+    }
+  });
+};
 
 
 module.exports = {

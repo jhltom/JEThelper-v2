@@ -14,10 +14,34 @@ export default class Test extends React.Component {
     }
   }
 
+  /**
+   * componentDidMount() related methods
+   */
+
+   componentDidMount = () =>{
+    this.getLastId();
+   }
+
+   getLastId = () => {
+    fetch("http://localhost:8081/lastid",
+      {
+        method: 'GET'
+      }).then(res => {
+        return res.json();
+      }, err => {
+        console.log(err);
+      }).then(result => {
+        console.log("ID: ", result[0].id);
+      }, err => {
+        console.log(err);
+      });
+  }
+
+   /**
+    * handleSubmit() related methods
+    */
   handleSubmit = (event) => {
     this.postAuthor();
-    this.getLastId();
-    
   }
 
   postAuthor = () => {
@@ -49,21 +73,7 @@ export default class Test extends React.Component {
     });
   }
 
-  getLastId = () => {
-    console.warn("get last id!!")
-    fetch("http://localhost:8081/lastid",
-      {
-        method: 'GET'
-      }).then(res => {
-        return res.json();
-      }, err => {
-        console.log(err);
-      }).then(result => {
-        console.log("ID: ", result[0]);
-      }, err => {
-        console.log(err);
-      });
-  }
+  
 
 
 

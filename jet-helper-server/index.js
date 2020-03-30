@@ -14,11 +14,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.post('/newsubmission', routes.newSubmission);
 app.post('/newauthor', routes.newAuthor);
 app.post('/newreviewer', routes.newReviewer);
-app.post('/testPost', routes.testPost);
+
 
 app.get('/getmanuscript/:id/:title', routes.getManuscript);
 app.get('/getallsubmissions', routes.getAllSubmissions);
+app.get('/newauthorid', routes.getNewAuthorId);
+
+
+//testing
 app.get('/lastid', routes.lastID);
+app.post('/testPost', routes.testPost);
 
 
 

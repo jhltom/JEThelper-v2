@@ -33,15 +33,26 @@ export default class Submission extends React.Component {
   /**
    * componenetDidMount()
    */
-  componentDidMount = () =>{
+  componentDidMount = () => {
     this.getNewAuthorId();
-
-
     this.setState({ unixtime: Date.now() });
   }
 
-  getNewAuthorId = () =>{
-
+  getNewAuthorId = () => {
+    fetch("http://localhost:8081/newauthorid",
+      {
+        method: 'GET'
+      }).then(res => {
+        return res.json();
+      }, err => {
+        console.log(err);
+      }).then(result => {
+        const authorId = result[0].id + 1;
+        console.log(authorId);
+        this.setState({authorId: authorId});
+      }, err => {
+        console.log(err);
+      });
   }
 
 
@@ -50,7 +61,7 @@ export default class Submission extends React.Component {
    * handleSubmit()
    */
   handleSubmit = (event) => {
-  
+
     this.postAuthor();
     this.postManuscript();
 
@@ -59,7 +70,7 @@ export default class Submission extends React.Component {
 
   postAuthor = () => {
 
-    const data ={
+    const data = {
       authordId: this.state.authordId,
       authorLast: this.state.authorLast,
       authorFirst: this.state.authorFirst,
@@ -72,18 +83,18 @@ export default class Submission extends React.Component {
 
     fetch("http://localhost:8081/newauthor", {
       method: "POST",
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    }).then ( res =>{
+    }).then(res => {
       console.log("resultado: ", res.json());
-      if (res.status >=400){
-        throw new Error ("Bad response from server. Status: "+res.status);
+      if (res.status >= 400) {
+        throw new Error("Bad response from server. Status: " + res.status);
       }
       // alert("resultado: ", res.json());
       return res.json();
     }, err => {
-      console.warn("err1: ",err);
-    }).then ( data =>{
+      console.warn("err1: ", err);
+    }).then(data => {
       // alert("Success!", data);
       this.setState({ authorLast: "" });
       this.setState({ authorFirst: "" });
@@ -93,13 +104,13 @@ export default class Submission extends React.Component {
       this.setState({ email: "" });
       this.setState({ telephone: "" });
     }, err => {
-      console.warn("err2: ",err);
+      console.warn("err2: ", err);
     });
   }
 
   postManuscript = () => {
 
-    const data ={
+    const data = {
       authorId: this.state.authorId,
       title: this.state.title,
       keyword1: this.state.keyword1,
@@ -113,29 +124,29 @@ export default class Submission extends React.Component {
 
     fetch("http://localhost:8081/newsubmission", {
       method: "POST",
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    }).then ( res =>{
+    }).then(res => {
       console.log("resultado: ", res.json());
-      if (res.status >=400){
-        throw new Error ("Bad response from server. Status: "+res.status);
+      if (res.status >= 400) {
+        throw new Error("Bad response from server. Status: " + res.status);
       }
       // alert("resultado: ", res.json());
       return res.json();
     }, err => {
-      console.warn("err1: ",err);
-    }).then ( data =>{
+      console.warn("err1: ", err);
+    }).then(data => {
       alert("Success!", data);
       this.setState({ title: "" });
       this.setState({ keyword1: "" });
       this.setState({ keyword2: "" });
       this.setState({ keyword3: "" });
-      this.setState({ keyword4: ""});
+      this.setState({ keyword4: "" });
       this.setState({ keyword5: "" });
       this.setState({ abstract: "" });
       this.setState({ unixtime: 0 });
     }, err => {
-      console.warn("err2: ",err);
+      console.warn("err2: ", err);
     });
 
   }
@@ -212,7 +223,7 @@ export default class Submission extends React.Component {
             </div>
             <div className="submission-body">
               <label> Mailing Address <br></br>
-                <input type="text"  placeholder="Preferred Mailing Address" style={{ width: "50vw" }} value={this.state.address} onChange={this.address} />
+                <input type="text" placeholder="Preferred Mailing Address" style={{ width: "50vw" }} value={this.state.address} onChange={this.address} />
               </label>
             </div>
             <div className="submission-body">
@@ -246,12 +257,12 @@ export default class Submission extends React.Component {
             </div>
             <div className="submission-body">
               <label> Abstract (300 words) <br></br>
-                <textarea className="bigText" placeholder="Abstract of the Manuscript"  height="50%" style={{ width: "50vw" }} value={this.state.abstract} onChange={this.abstract} />
+                <textarea className="bigText" placeholder="Abstract of the Manuscript" height="50%" style={{ width: "50vw" }} value={this.state.abstract} onChange={this.abstract} />
               </label>
             </div>
             <br></br>
 
-     
+
 
             <form onSubmit={this.handleSubmit}>
               <input type="submit" value="Submit" />

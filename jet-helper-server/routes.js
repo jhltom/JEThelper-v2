@@ -88,6 +88,19 @@ getAllSubmissions = (req, res) => {
   });
 }
 
+/* ---- Get New Author Id ---- */
+getNewAuthorId = (req, res) => {
+  const query =`
+  select count(*) as id from Authors;
+  `;
+  connection.query(query, (err, results, fields) => {
+    if (err) console.log(err);
+    else {
+      res.json(results)
+    }
+  });
+};
+
 
 /* ---- Test Post ---- */
 
@@ -119,11 +132,15 @@ lastID = (req, res) => {
 
 
 module.exports = {
+  
   newSubmission: newSubmission,
   newAuthor: newAuthor,
   newReviewer: newReviewer,
+
   getManuscript: getManuscript,
   getAllSubmissions: getAllSubmissions,
+
+  getNewAuthorId:getNewAuthorId,
 
   //testing routes
   testPost:testPost,

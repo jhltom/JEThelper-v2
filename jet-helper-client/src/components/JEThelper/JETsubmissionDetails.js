@@ -9,6 +9,7 @@ export default class JETsubmissionDetails extends React.Component {
 
     this.state = {
       submission: [],
+      manuscriptId: null,
       reviewer1: false,
       reviewer2: false,
       reviewer3: false,
@@ -52,18 +53,17 @@ export default class JETsubmissionDetails extends React.Component {
 
   getSubmission = () =>{
     const { submission } = this.props.location.state
+    this.setState({manuscriptId: submission.id})
+    console.log("manuscript id :",submission.id)
     const date = new Date(submission.dateUnixTime);
 
     if (submission.reviewer1Id) {
-      console.log("aqui1")
       this.setState({ reviewer1: true });
     }
     if (submission.reviewer2Id) {
-      console.log("aqui2")
       this.setState({ reviewer2: true });
     }
     if (submission.reviewer3Id) {
-      console.log("aqui3")
       this.setState({ reviewer3: true });
     }
 
@@ -99,12 +99,42 @@ export default class JETsubmissionDetails extends React.Component {
    * Submit methods
    */
   submitReviewer = () =>{
-    // let selectReviewer = 0;
-    // if (!this.state.reviewer1) selectReviewer=1
-    // else if (!this.state.reviewer2) selectReviewer=2;
-    // else selectReviewer=3;
+    let selectReviewer = 0;
+    if (!this.state.reviewer1) selectReviewer=1
+    else if (!this.state.reviewer2) selectReviewer=2;
+    else selectReviewer=3;
 
     this.postReviewer();
+    this.updateReviewerInManuscript(selectReviewer);
+  }
+
+  updateReviewerInManuscript = (reviewer) => {
+    console.log(reviewer)
+
+    const data = {
+      reviewer: reviewer,
+      reviewerId: this.state.reviewerdId,
+      manuscriptId: this.state.manuscriptId,
+    }
+
+    fetch("http://localhost:8081/updatemanuscriptreviewer", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(res => {
+      if (res.status >= 400) {
+        throw new Error("Bad response from server. Status: " + res.status);
+      }
+      return res.json();
+    }, err => {
+      console.warn("err1: ", err);
+    }).then(data => {
+      console.log(data)
+      this.setState({ reviewerId: this.state.reviewerId+1});
+    }, err => {
+      console.warn("err2: ", err);
+    });
+
   }
 
   postReviewer = () => {
@@ -128,12 +158,10 @@ export default class JETsubmissionDetails extends React.Component {
       if (res.status >=400){
         throw new Error ("Bad response from server. Status: "+res.status);
       }
-      // alert("resultado: ", res.json());
       return res.json();
     }, err => {
       console.warn("err1: ",err);
     }).then ( data =>{
-      alert("Success!", data);
       this.setState({ lastName: "" });
       this.setState({ firstName: "" });
       this.setState({ institution: "" });

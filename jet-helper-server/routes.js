@@ -114,6 +114,20 @@ getNewReviewerId = (req, res) => {
   });
 };
 
+/* ---- Updated Reviewer Id in Manuscript ---- */
+updateManuscriptReviewer = (req, res) => {
+  const data = req.body;
+  console.log(data);
+  const query =`
+  update Manuscript set reviewer${data.reviewer}Id = ${data.reviewerId} where id = ${data.manuscriptId};
+  `;
+  connection.query(query, (err, results, fields) => {
+    if (err) console.log(err);
+    else {
+      res.json(results);
+    }
+  });
+};
 
 /* ---- Test Post ---- */
 testPost = (req, res, next) => {
@@ -154,6 +168,8 @@ module.exports = {
 
   getNewAuthorId:getNewAuthorId,
   getNewReviewerId: getNewReviewerId,
+
+  updateManuscriptReviewer:updateManuscriptReviewer,
 
   //testing routes
   testPost:testPost,

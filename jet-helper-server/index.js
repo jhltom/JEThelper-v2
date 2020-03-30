@@ -21,6 +21,8 @@ app.get('/getallsubmissions', routes.getAllSubmissions);
 app.get('/newauthorid', routes.getNewAuthorId);
 app.get('/newreviewerId', routes.getNewReviewerId);
 
+app.post('/updatemanuscriptreviewer', routes.updateManuscriptReviewer);
+
 
 //testing
 app.get('/lastid', routes.lastID);

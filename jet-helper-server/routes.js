@@ -85,10 +85,31 @@ getAllSubmissions = (req, res) => {
   });
 }
 
+
+/* ---- Test Post ---- */
+testPost = (req, res) => {
+  const data = req.body;
+  console.log(data);
+  const query =`
+  INSERT INTO TestPost (lastName, firstName)
+  VALUES ("${data.lastName}" , "${data.firstName}");
+  `;
+  connection.query(query, (err, results, fields) => {
+    if (err) console.log(err);
+    else {
+      res.json(results);
+    }
+  });
+};
+
+
 module.exports = {
   newSubmission: newSubmission,
   newAuthor: newAuthor,
   newReviewer: newReviewer,
   getManuscript: getManuscript,
-  getAllSubmissions: getAllSubmissions
+  getAllSubmissions: getAllSubmissions,
+
+  //testing routes
+  testPost:testPost
 }

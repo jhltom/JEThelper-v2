@@ -68,7 +68,7 @@ export default class Submission extends React.Component {
   }
 
 
-  submitReviewer = () =>{
+  submitReviewer = () => {
 
 
   }
@@ -80,14 +80,16 @@ export default class Submission extends React.Component {
         <div className="container status-container">
           <div className="jumbotron less-headspace">
 
-            <DropdownButton id="dropdown-basic-button" title={this.state.selected} className="toggle" >
-              <Dropdown.Item onSelect={() => this.setState({ selected: "Author" })}>Author</Dropdown.Item>
-              <Dropdown.Item onSelect={() => this.setState({ selected: "Reviewer" })}>Reviewer</Dropdown.Item>
-            </DropdownButton>
+
 
             {this.state.selected == "Author" ?
               <div>
+
                 <div className="input-container">
+                  <DropdownButton id="dropdown-basic-button" title={this.state.selected} className="toggle" >
+                    <Dropdown.Item onSelect={() => this.setState({ selected: "Author" })}>Author</Dropdown.Item>
+                    <Dropdown.Item onSelect={() => this.setState({ selected: "Reviewer" })}>Reviewer</Dropdown.Item>
+                  </DropdownButton>
                   <input type='text' placeholder="Author ID"
                     value={this.state.authorId}
                     onChange={this.handleAuthorIdChange}
@@ -97,6 +99,7 @@ export default class Submission extends React.Component {
                     onChange={this.handleTitleChange}
                     className="login-input" />
                   <button id="submitTitleBtn" onClick={this.submitTitle} className="submit-btn">Submit</button>
+
                 </div>
                 <div className="header-container">
                   <div className="headers">
@@ -105,14 +108,22 @@ export default class Submission extends React.Component {
                     <div className="header"><strong>Title</strong></div>
                     <div className="header"><strong>Review Status</strong></div>
                   </div>
+
                 </div>
                 <div className="results-container" id="results">
                   {this.state.foundSubmissions}
                 </div>
+
               </div>
               :
+
               <div>
+
                 <div className="input-container">
+                  <DropdownButton id="dropdown-basic-button" title={this.state.selected} className="toggle" >
+                    <Dropdown.Item onSelect={() => this.setState({ selected: "Author" })}>Author</Dropdown.Item>
+                    <Dropdown.Item onSelect={() => this.setState({ selected: "Reviewer" })}>Reviewer</Dropdown.Item>
+                  </DropdownButton>
                   <input type='text' placeholder="Reviewer ID"
                     value={this.state.reviewerId}
                     onChange={this.handleReviewerIdChange}
@@ -123,20 +134,20 @@ export default class Submission extends React.Component {
                     className="login-input" />
                   <button id="submitTitleBtn" onClick={this.submitReviewer} className="submit-btn">Submit</button>
                 </div>
+
                 <div className="header-container">
                   <div className="headers">
                     <div className="header"><strong>Request Date</strong></div>
                     <div className="header"><strong>Title</strong></div>
                     <div className="header"><strong>Review Status</strong></div>
                     <div className="header"><strong>Due Date</strong></div>
-                    
                   </div>
                 </div>
+
                 <div className="results-container" id="results">
                   {this.state.foundSubmissions}
                 </div>
-
-
+                
               </div>
             }
 

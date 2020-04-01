@@ -41,6 +41,15 @@
   overflow-wrap: break-word;
 }
 
+.toggle {
+  width: 250px;
+  height: 36px;
+  border: none;
+  padding: 2px 16px;
+  align-items: left;
+}
+
+
 .input-container .login-input {
   margin: 10px 0;
   width: 250px;
@@ -54,7 +63,7 @@
 
 .input-container .author-input {
   margin: 10px 0;
-  width: 100px;
+  width: 120px;
   height: 36px;
   border: none;
   padding: 2px 16px;

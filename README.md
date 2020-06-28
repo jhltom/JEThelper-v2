@@ -7,15 +7,15 @@ JEThelper (Journal Editorial Task Helper) is an Academic Article Submission Mana
 - [X] Check the current status of the blind reviewing process
 
 #### For Reviewers
-- [ ] Submit a review for the manuscript they have been assigned
-- [ ] Keep track of the articles they have completed/uncompleted/requested to review
+- [X] Submit a review for the manuscript they have been assigned
+- [X] Keep track of the articles they have completed/uncompleted/requested to review
 
 #### For Editorial Assistants
 - [X] Check the status of all the submitted manuscripts
 - [X] Add reviewers to a submitted manuscript
-- [ ] Auto-generate quarterly editorial report
-- [ ] Auto-generate expenditure reports
-- [ ] Auto-generate email bodies to send to authors and reviewers based on the status of the reviewing process
+- [X] Auto-generate quarterly editorial report
+- [X] Auto-generate expenditure reports
+- [X] Auto-generate email bodies to send to authors and reviewers based on the status of the reviewing process
 
 ## Instructions to test the web application
 1. cd into `JEThelper-v2/jet-helper-client` directory
